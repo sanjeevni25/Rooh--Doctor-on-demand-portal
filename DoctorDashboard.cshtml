@@ -1,0 +1,766 @@
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/Doctor_Layout.cshtml";
+}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+@*<script src="../Scripts/jquery-3.4.1.js" type="text/javascript"></script>*@
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header" style="background-color:#fff;font-weight:bold;color:black ; border-bottom: 4px solid black;">Dashboard</div><br />
+                <div class="card-body">
+                    <div class="row">
+                        <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
+                            <li class="nav-item flex-fill" role="presentation">
+                                <button class="nav-link w-100 active" id="doct_Reg-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-doc" type="button" role="tab" aria-controls="doct_reg" aria-selected="true">Doctor Registration</button>
+                            </li>
+                            <li class="nav-item flex-fill" role="presentation">
+                                <button class="nav-link w-100" id="upload_doc-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-uploaddoc" type="button" role="tab" aria-controls="upload_doc" aria-selected="false">Upload Document</button>
+                            </li>
+                            <li class="nav-item flex-fill" role="presentation">
+                                <button class="nav-link w-100" id="Set_payment-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-Setpayment" type="button" role="tab" aria-controls="Set_payment" aria-selected="false">Set Payment</button>
+                            </li>
+                            <li class="nav-item flex-fill" role="presentation">
+                                <button class="nav-link w-100" id="Available_Days-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-Available_Days" type="button" role="tab" aria-controls="Available_Days" aria-selected="false">Available Days </button>
+                            </li>
+                        </ul>
+                        <div class="tab-content pt-2" id="borderedTabJustifiedContent">
+                            <div class="tab-pane fade show active" id="bordered-justified-doc" role="tabpanel" aria-labelledby="doct_Reg-tab">
+                                <div class="row">
+
+                                    <div class="mt-1 col-md-2">
+                                        <label for="doc_prefix">Prefix</label>
+                                        <select id="doc_prefix" class="form-select">
+                                            <option value="0">select</option>
+                                            <option value="1">Dr.</option>
+                                            <option value="2">Mr.</option>
+                                            <option value="3">Mrs.</option>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="mt-1 col-md-4">
+                                        <label for="doc_firstName">First  Name</label>
+                                        <input type="text" class="form-control" id="doc_firstName">
+                                    </div>
+                                    <div class=" mt-1 col-md-3">
+                                        <label for="doc_midtName">Middle  Name</label>
+                                        <input type="text" class="form-control" id="doc_midtName">
+                                    </div>
+                                    <div class=" mt-1 col-md-3">
+                                        <label for="doc_lasttName">Last  Name</label>
+                                        <input type="text" class="form-control" id="doc_lasttName">
+                                    </div>
+                                    <div class=" mt-1 col-md-4">
+                                        <label for="doc_aadhar_No">Aadhar No.</label>
+                                        <input type="text" class="form-control" id="doc_aadhar_No">
+                                    </div>
+                                    <div class=" mt-1 col-md-4">
+                                        <label for="doc_Mobile_No">Mobile No.</label>
+                                        <input type="text" class="form-control" id="doc_Mobile_No">
+                                    </div>
+                                    <div class=" mt-1 col-md-4">
+                                        <label for="doc_Email_id">Email Id</label>
+                                        <input type="text" class="form-control" id="doc_Email_id">
+                                    </div>
+                                    <div class=" mt-1 col-md-4">
+                                        <label for="doc_password">Password</label>
+                                        <input type="text" class="form-control" id="doc_password">
+                                    </div>
+                                    <div class="mt-1 col-md-4">
+                                        <label for="country">Country</label>
+                                        <select id="country" class="form-control" onchange="getstate();">
+                                        </select>
+                                    </div>
+                                    <div class="mt-1 col-md-4">
+                                        <label for="state">State</label>
+                                        <select id="state" class="form-select" onchange="getcity();">
+                                        </select>
+                                    </div>
+                                    <div class="mt-1 col-md-3">
+                                        <label for="city">City</label>
+                                        <select id="city" class="form-select">
+                                        </select>
+                                    </div>
+                                    <div class=" mt-1 col-md-3">
+                                        <label for="Pin_code">Pin Code</label>
+                                        <input type="text" class="form-control" id="Pin_code">
+                                    </div>
+                                    <div class="mt-1 col-md-6">
+                                        <label for="Address1">Address1</label>
+                                        <textarea id="text_areaAddress1" class="form-control" name="text_areaAddress1" rows="1" cols="50">
+                                            </textarea>
+                                    </div>
+
+                                    <div class="mt-1 col-md-6">
+                                        <label for="Address2">Address2</label>
+                                        <textarea id="textArea_Address2" class="form-control" name="textArea_Address2" rows="1" cols="50">
+                                            </textarea>
+                                    </div>
+
+                                    <div class="mt-1 col-md-3">
+                                        <label for="doc_specialization">Doctor specialization</label>
+                                        <select id="doc_specialization" class="form-select">
+                                            <option value="0">select</option>
+                                            <option value="Psychiatry">Psychiatry</option>
+                                            <option value="Psychology">Psychology</option>
+                                            <option value="Psychotherapy">Psychotherapy</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="mt-1 col-md-3">
+                                        <label for="doc_qualification">Highest Qualification</label>
+                                        <input type="text" class="form-control" id="doc_qualification">
+                                    </div>
+
+                                    <div class="mt-1 col-md-3">
+                                        <label for="doc_Experience">Experience</label>
+                                        <input type="number" class="form-control" id="doc_Experience">
+                                    </div>
+
+
+
+                                    <div class=" mt-3 col-sm-12 d-flex justify-content-center">
+                                        <a class="btn btn-danger mx-1" id="btn_save" onclick="save_doctor();">Save</a>
+                                        <a class="btn btn-warning mx-1" id="btn_update" onclick="update_doctor();" style="display: none"> Update</a>
+                                        <a class="btn btn-info" onclick="Refresh();">Refresh</a>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="bordered-justified-uploaddoc" role="tabpanel" aria-labelledby="upload_doc-tab">
+                                e
+                            </div>
+                            <div class="tab-pane fade" id="bordered-justified-Setpayment" role="tabpanel" aria-labelledby="Set_payment-tab">
+                                <div class="card shadow" style="margin-top: 5px;">
+                                    <div class="card-header">Set Payment</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3 mt-3">
+                                                <label for="select_time">Select Payment  </label>
+                                            </div>
+
+                                            <div class=" col-md-3 mt-3">
+
+                                                <label class="form-check-label" for="time_payment">
+                                                    Time
+                                                </label>
+
+                                                <select id="time_payment" class="form-select">
+                                                    <option value="0">select</option>
+                                                    <option value="15 min">15 min</option>
+                                                    <option value="30 min">30 min</option>
+                                                    <option value="1 Hour">1 Hour</option>
+                                                    <option value="2 Hour">2 Hours</option>
+                                                    <option value="3 Hours">3 Hours</option>
+                                                    <option value="Monthly Package">Monthly Package</option>
+                                                </select>
+                                            </div>
+                                            <div class=" col-md-3 mt-3">
+
+                                                <label class="form-check-label" for="payment_charges">
+                                                    Payment Charges
+                                                </label>
+                                                <select id="payment_charges" class="form-select">
+                                                    <option value="0">select</option>
+                                                    <option value="100">100</option>
+                                                    <option value="200">200 </option>
+                                                    <option value="300">300 </option>
+                                                    <option value="400">400</option>
+                                                    <option value="500">500</option>
+                                                    <option value="1200">1200</option>
+                                                </select>
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                        <div class="col-md-12 d-flex justify-content-center mt-3">
+
+
+                                            <button type="submit" class="btn btn-primary bg-danger mb-3 mx-1" onclick="save_Payment();">Save Payment</button>
+
+                                            <button class="btn btn-primary mb-3 bg-info mx-1" type="button">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="bordered-justified-Available_Days" role="tabpanel" aria-labelledby="Available_Days-tab">
+
+                                <div class="card shadow" style="margin-top: 5px;">
+                                    <div class="card-header">Set Available Days</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3 mt-3">
+                                                <label for="select_days">Select Days</label>
+                                            </div>
+
+                                            @*<div class="form-check col-md-3 mt-3">
+                                                    <input class="form-check-input" type="checkbox" name="days" value="1" id="Sunday"   >
+                                                    <label class="form-check-label" for="gridCheck1" >
+                                                        Sunday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check col-md-3 mt-3">
+                                                    <input class="form-check-input" type="checkbox" name="days" value="1" id="Monday">
+                                                    <label class="form-check-label" for="gridCheck1">
+                                                        Monday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check col-md-3 mt-3">
+                                                    <input class="form-check-input" type="checkbox" name="days" value="1" id="Tuesday">
+                                                    <label class="form-check-label" for="gridCheck1">
+                                                        Tuesday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check col-md-3 mt-3">
+                                                    <input class="form-check-input" type="checkbox" name="days" value="1" id="Wednessday" >
+                                                    <label class="form-check-label" for="gridCheck1">
+                                                        Wednessday
+                                                    </label>
+                                                </div>
+
+
+                                                <div class="form-check col-md-3 mt-3">
+                                                    <input class="form-check-input" type="checkbox" name="days" value="1" id="Thursday">
+                                                    <label class="form-check-label" for="gridCheck1">
+                                                        Thursday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check col-md-3 mt-3">
+                                                    <input class="form-check-input" type="checkbox" name="days" value="1" id="Friday">
+                                                    <label class="form-check-label" for="gridCheck1">
+                                                        Friday
+                                                    </label>
+                                                </div>
+                                                <div class="form-check col-md-3 mt-3">
+                                                    <input class="form-check-input" type="checkbox" name="days" value="1" id="Saturday">
+                                                    <label class="form-check-label" for="gridCheck1">
+                                                        Saturday
+                                                    </label>
+                                                </div>*@
+                                            <div class="form-check col-md-3 mt-3">
+                                                <input type="checkbox" name="custom7" value="0" id="Sunday">
+                                                <label for="Sunday">Sunday</label>
+                                            </div>
+                                            <div class="form-check col-md-3 mt-3">
+                                                <input type="checkbox" name="custom7" value="1" id="Monday">
+                                                <label for="Monday">Monday</label>
+                                            </div>
+                                            <div class="form-check col-md-3 mt-3">
+                                                <input type="checkbox" name="custom7" value="2" id="Tuesday">
+                                                <label for="Tuesday">Tuesday</label>
+                                            </div>
+                                            <div class="form-check col-md-3 mt-3">
+                                                <input type="checkbox" name="custom7" value="3" id="Wednessday">
+                                                <label for="Wednessday">Wednessday</label>
+                                            </div>
+                                            <div class="form-check col-md-3 mt-3">
+                                                <input type="checkbox" name="custom7" value="4" id="Thursday">
+                                                <label for="Thursday">Thursday</label>
+                                            </div>
+
+                                            <div class="form-check col-md-3 mt-3">
+                                                <input type="checkbox" name="custom7" value="5" id="Friday">
+                                                <label for="Friday">Friday</label>
+                                            </div>
+                                            <div class="form-check col-md-3 mt-3">
+                                                <input type="checkbox" name="custom7" value="6" id="Saturday">
+                                                <label for="Saturday">Saturday</label>
+                                            </div>
+                                            @*<hr>*@
+
+                                            <div class="col-md-2 mt-4">
+                                                <label for="select_days">Set Time</label>
+                                            </div>
+                                            <div class="col-md-3 mt-3">
+                                                <i class="  bx bxs-calendar"></i>  <label class="form-label" for="Date">
+                                                    Date
+
+                                                </label>
+                                                @*<input type="date" class="form-control" id=" textDate" />*@
+                                                <input type='text' id='txtDate' class="form-control" />
+
+                                            </div>
+                                            
+                                                
+                                          
+                                            <div class="col-md-2 mt-3">
+                                                <label class="form-label" for="To-time">
+                                                    To Time
+                                                </label>
+                                                <input class="form-control" type="time" id="To-time">
+
+                                            </div>
+
+                                            <div class="col-md-2 mt-3">
+                                                <label class="form-label" for="from-time">
+                                                    From Time
+                                                </label>
+                                                <input class="form-control" type="time" id="from-time">
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="col-md-12 d-flex justify-content-center mt-3">
+
+
+                                            <button type="submit" class="btn btn-primary bg-danger mb-3 mx-1" onclick="save_days();"id="Save_days btn">Save Days</button>
+                                            <button class="btn btn-primary mb-3 bg-info mx-1" type="button" onclick="update();"id="update_btn">Update</button>
+                                            @*<button class="btn btn-primary mb-3 bg-info mx-1" type="button" onclick="get_dates_asper_days()">Cancel</button>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+
+    $(document).ready(function () {
+      
+        $('#update_btn').hide();
+        $.noConflict();
+        debugger;
+
+       
+        getcountry();
+    });
+    //getcountry
+    function getcountry() {
+        debugger;
+        $('#country').empty();
+
+        var urlgetcode = '../Admin/getcountry';
+        $.ajax({
+            type: "POST",
+            url: urlgetcode,
+            data: '',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (msg) {
+                var obj = JSON.stringify(msg);
+                var str = $.parseJSON(obj);
+                if (str.length > 0) {
+
+                    $('#country').append('<option value="0">Select </option>');
+                    for (var i = 0; i < str.length; i++) {
+
+                        $('#country').append('<option value="' + str[i]["countryid"] + '">' + str[i]["country"] + '</option>');
+
+
+                    }
+
+
+                }
+
+
+            },
+            error: function (request) {
+                alert(request.responseText);
+            }
+        });
+    }
+    //getstate
+    function getstate() {
+        debugger;
+        var countrycd = $('#country option:selected').val();
+        $('#state').empty();
+
+        var urlgetcode = '../Admin/getstate';
+        $.ajax({
+            type: "POST",
+            url: urlgetcode,
+            data: '{countrycd:"' + countrycd + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (msg) {
+                var obj = JSON.stringify(msg);
+                var str = $.parseJSON(obj);
+                if (str.length > 0) {
+
+                    $('#state').append('<option value="0">Select </option>');
+                    for (var i = 0; i < str.length; i++) {
+
+                        $('#state').append('<option value="' + str[i]["stateid"] + '">' + str[i]["statename"] + '</option>');
+
+
+                    }
+
+
+                }
+
+
+            },
+            error: function (request) {
+                alert(request.responseText);
+            }
+        });
+    }
+    //get city
+
+    function getcity() {
+        debugger;
+        var statecd = $('#state option:selected').val();
+        /*        console.log(statecd);*/
+        $('#city').empty();
+
+        var urlgetcode = '../Admin/getcity';
+        $.ajax({
+            type: "POST",
+            url: urlgetcode,
+            data: '{statecd:"' + statecd + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (msg) {
+                var obj = JSON.stringify(msg);
+                var str = $.parseJSON(obj);
+                if (str.length > 0) {
+
+                    $('#city').append('<option value="0">Select </option>');
+                    for (var i = 0; i < str.length; i++) {
+
+                        $('#city').append('<option value="' + str[i]["cityid"] + '">' + str[i]["cityname"] + '</option>');
+
+
+                    }
+
+
+                }
+
+
+            },
+            error: function (request) {
+                alert(request.responseText);
+            }
+        });
+    }
+    function save_doctor() {
+
+
+        var Prefix = $('#doc_prefix option:selected').text();
+        var First_Name = $('#doc_firstName').val();
+        var Middle_Name = $('#doc_midtName').val();
+        var Last_Name = $('#doc_lasttName').val();
+        var Addhar_no = $('#doc_aadhar_No').val();
+        var Mobile_No = $('#doc_Mobile_No').val();
+        var Email_id = $('#doc_Email_id').val();
+        var Password = $('#doc_password').val();
+        var Country = $('#country option:selected').text();
+        var State = $('#state option:selected').text();
+        var City = $('#city option:selected').text();
+        var pin_code = $('#Pin_code').val();
+        var Address1 = $('#text_areaAddress1').val();
+        var Address2 = $('#textArea_Address2').val();
+        var Doctor_Specialization = $('#doc_specialization option:selected').text();
+        var Highest_Qualification = $('#doc_qualification').val();
+        var Experience = $('#doc_Experience').val();
+        var crt_User = 'test'
+
+        if ((Prefix == null) || (Prefix == '0') || (Prefix == "undefined") || (Prefix == '')) {
+            alert("Fill Prefix");
+            $('#doc_prefix option:selected').focus();
+            return;
+        }
+        if ((First_Name == null) || (First_Name == '0') || (First_Name == "undefined") || (First_Name == '')) {
+            alert("Fill First Name");
+            $('#doc_firstName').focus();
+            return;
+        }
+        if ((Middle_Name == null) || (Middle_Name == '0') || (Middle_Name == "undefined") || (Middle_Name == '')) {
+            alert("Fill Middle Name");
+            $('#doc_midtName').focus();
+            return;
+        }
+        if ((Last_Name == null) || (Last_Name == '0') || (Last_Name == "undefined") || (Last_Name == '')) {
+            alert("Fill Last Name");
+            $('#doc_lasttName').focus();
+            return;
+        }
+        if ((Addhar_no == null) || (Addhar_no == '0') || (Addhar_no == "undefined") || (Addhar_no == '')) {
+            alert("Fill Aadhar no.");
+            $('#doc_aadhar_No').focus();
+            return;
+        }
+        if ((Mobile_No == null) || (Mobile_No == '0') || (Mobile_No == "undefined") || (Mobile_No == '')) {
+            alert("Fill Mobile no.");
+            $('#doc_Mobile_No').focus();
+            return;
+        }
+        if ((Email_id == null) || (Email_id == '0') || (Email_id == "undefined") || (Email_id == '')) {
+            alert("Fill Email Id");
+            $('#doc_Email_id').focus();
+            return;
+        }
+        if ((Password == null) || (Password == '0') || (Password == "undefined") || (Password == '')) {
+            alert("Fill Password");
+            $('#doc_password').focus();
+            return;
+        }
+        if ((Country == null) || (Country == '0') || (Country == "undefined") || (Country == '')) {
+            alert(" Choose Country");
+            $('#country option:selected').focus();
+            return;
+        }
+        if ((State == null) || (State == '0') || (State == "undefined") || (State == '')) {
+            alert(" Choose State");
+            $('#state option:selected').focus();
+            return;
+        }
+        if ((City == null) || (City == '0') || (City == "undefined") || (City == '')) {
+            alert("Choose City ");
+            $('#city option:selected').focus();
+            return;
+        }
+        if ((pin_code == null) || (pin_code == '0') || (pin_code == "undefined") || (pin_code == '')) {
+            alert("Fill Pin_code");
+            $('#Pin_code').focus();
+            return;
+        }
+        if ((Address1 == null) || (Address1 == '0') || (Address1 == "undefined") || (Address1 == '')) {
+            alert("Fill Address1");
+            $('#text_areaAddress1').focus();
+            return;
+        }
+        if ((Address2 == null) || (Address2 == '0') || (Address2 == "undefined") || (Address2 == '')) {
+            alert("Fill Address2");
+            $('#textArea_Address2').focus();
+            return;
+        }
+        if ((Doctor_Specialization == null) || (Doctor_Specialization == '0') || (Doctor_Specialization == "undefined") || (Doctor_Specialization == '')) {
+            alert("Choose Doctor Specializatione");
+            $('#doc_specialization option:selected').focus();
+            return;
+        }
+        if ((Highest_Qualification == null) || (Highest_Qualification == '0') || (Highest_Qualification == "undefined") || (Highest_Qualification == '')) {
+            alert("Fill Highest Qualification");
+            $('#doc_qualification').focus();
+            return;
+        }
+        if ((Experience == null) || (Experience == '0') || (Experience == "undefined") || (Experience == '')) {
+            alert("Fill Experience");
+            $('#doc_Experience').focus();
+            return;
+        }
+
+        var urlgetcode = '../Doctor/save_doctor';
+        $.ajax({
+            type: "POST",
+            url: urlgetcode,
+            data: '{Prefix:"' + Prefix + '",First_Name:"' + First_Name + '",Middle_Name:"' + Middle_Name + '",Last_Name:"' + Last_Name + '",Addhar_no:"' + Addhar_no + '",Mobile_No:"' + Mobile_No + '",Email_id:"' + Email_id + '",Password:"' + Password + '",Country:"' + Country + '",State:"' + State + '",City:"' + City + '",pin_code:"' + pin_code + '",Address1:"' + Address1 + '",Address2:"' + Address2 + '",Doctor_Specialization:"' + Doctor_Specialization + '",Highest_Qualification:"' + Highest_Qualification + '",Experience:"' + Experience + '",crt_User:"' + crt_User + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (msg) {
+                if (msg < 0) {
+                    alert('doctor already Exist');
+                }
+                else {
+                    alert('doctor save Successfully');
+                }
+            },
+            error: function (request) {
+                alert(request.responseText);
+            }
+        });
+
+    }
+
+    function save_days() {
+      
+        debugger
+        var Crt_user = localStorage.getItem("Doc_Name");
+        var Doc_No = localStorage.getItem("Doc_No");
+        var Sunday = $('#Sunday').is(":checked");
+        var Monday = $('#Monday').is(":checked");
+        var Tuesday = $('#Tuesday').is(":checked");
+        var Wednessday = $('#Wednessday').is(":checked");
+        var Thursday = $('#Thursday').is(":checked");
+        var Friday = $('#Friday').is(":checked");
+        var Saturday = $('#Saturday').is(":checked");
+
+        if (Sunday == "0" && Monday == "0" && Tuesday == "0" && Wednessday == "0" && Thursday == "0" && Friday == "0" && Saturday == "0") {
+            alert("Select Days First ");
+            return;
+        }
+
+
+        if (Sunday == true) {
+            Sunday = "1";
+        }
+        else {
+            Sunday = "0";
+        }
+
+        if (Monday == true) {
+            Monday = "1";
+        }
+        else {
+            Monday = "0";
+        }
+
+        if (Tuesday == true) {
+            Tuesday = "1";
+        }
+        else {
+            Tuesday = "0";
+        }
+
+        if (Wednessday == true) {
+            Wednessday = "1";
+        }
+        else {
+            Wednessday = "0";
+        }
+
+        if (Thursday == true) {
+            Thursday = "1";
+        }
+        else {
+            Thursday = "0";
+        }
+
+        if (Friday == true) {
+            Friday = "1";
+        }
+        else {
+            Friday = "0";
+        }
+
+        if (Saturday == true) {
+            Saturday = "1";
+        }
+        else {
+            Saturday = "0";
+        }
+    
+        //console.log(Sunday);
+        //console.log(Monday);
+        //console.log(Tuesday);
+        //console.log(Wednessday);
+        //console.log(Thursday);
+        //console.log(Friday);
+        //console.log(Saturday);
+
+        var urlgetcode = '../Doctor/save_days';
+        $.ajax({
+            type: "POST",
+            url: urlgetcode,
+            data: '{Sunday:"' + Sunday + '",Monday:"' + Monday + '",Tuesday:"' + Tuesday + '",Wednessday:"' + Wednessday + '",Thursday:"' + Thursday + '",Friday:"' + Friday + '",Saturday:"' + Saturday + '",Crt_user:"' + Crt_user + '",Doc_No:"' + Doc_No + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (msg) {
+                if (msg < 0) {
+                   
+                    alert('days  saved');
+                }
+                else {
+                    alert('Days saved');
+                }
+            },
+            error: function (request) {
+                alert(request.responseText);
+            }
+              // getAvailableDate();
+        });
+        $('#update_btn').style.visibility = 'visible';
+    }
+
+
+    function get_dates_asper_days() {
+        var days = new Array();
+        $('input:checkbox[name="custom7"]:checked').each(function () {
+            days.push($(this).val());
+        });
+        debugger;
+        var m = days.toString().split(',');
+        console.log(m);
+        var m0 = m[0];
+        var m1 = m[1];
+            console.log(m);
+            $('#txtDate').datepicker({                // dateFormat: 'dd-mm-yy',
+                beforeShowDay:
+                    function (dt) {
+                        debugger;
+                        return [dt.getDay() == m[0] ? true : false || dt.getDay() == m[1] ? true : false || dt.getDay() == m[2] ? true : false || dt.getDay() == m[3] ? true : false || dt.getDay() == m[4] ? true : false || dt.getDay() == m[5] ? true : false || dt.getDay() == m[6] ? true : false];
+                    }
+            });
+        }
+    function update_Days() {
+        var updtusrid = localStorage.getItem("EMPID");
+
+        try {
+
+            var urlgetcode = '../Doctor/update_Days';
+            $.ajax({
+                type: "POST",
+                url: urlgetcode,
+                data: '{rollno:"' + rollno + '",colgcd:"' + colgcd + '",lecturecd:"' + lecturecd + '",p_a:"' + p_a + '",updtusrid:"' + updtusrid + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (msg) {
+                    try {
+                        var obj = JSON.stringify(msg);
+
+                        GetStudentRows(lecturecd)
+                        tbl_markedattend(lecturecd)
+
+
+
+                    }
+                    catch (Error) {
+                        alert(Error);
+                    }
+                },
+                error: function (request) {
+                    alert(request.responseText);
+                }
+            });
+        }
+        catch (Error) {
+            alert(Error);
+        }
+    }
+       
+</script>
+
+
+
