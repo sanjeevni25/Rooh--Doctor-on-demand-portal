@@ -1,0 +1,162 @@
+using Rooh.Models;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
+using System.Web;
+using System.Web.Mvc;
+
+namespace Rooh.Controllers
+{
+    public class DoctorController : Controller
+    {
+        // GET: Doctor
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+      
+        public ActionResult DoctorDashboard()
+        {
+            return View();
+        }
+        public ActionResult test()
+        {
+            return View();
+        }
+        public ActionResult Doctor()
+        {
+            return View();
+        }
+
+        public ActionResult Counsellor()
+        {
+            return View();
+        }
+       
+        public JsonResult AdminLogin(string email, string Password)
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.AdminLogin(email, Password);
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult show_Doc()
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.show_Doc();
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult getstate(int countrycd)
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.getstate(countrycd);
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+       
+        public JsonResult getcity(int statecd)
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.getcity(statecd);
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult getcountry()
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.getcountry();
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult DoctorLogin(string email, string Password)
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.DoctorLogin(email, Password);
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+        public string Save_doctor(string Prefix, string First_Name, string Middle_Name, string Last_Name, string Addhar_no, string Mobile_No, string Email_id, string Password, string Country, string State, string City, string pin_code, string Address1,
+ string Address2, string Doctor_Specialization, string Highest_Qualification, string Experience, string crt_User)
+        {
+            DoctorCRUD model1 = new DoctorCRUD();
+            string str = model1.save_doctor(Prefix, First_Name, Middle_Name, Last_Name, Addhar_no, Mobile_No, Email_id, Password, Country, State, City, pin_code, Address1, Address2, Doctor_Specialization, Highest_Qualification, Experience, crt_User);
+            return str;
+
+        }
+        
+             public JsonResult getdoctor_detailByLogin(string email)
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.getdoctor_detailByLogin(email);
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+        public string save_days(string Sunday, string Monday, string Tuseday, string Wednessday, string Thursday, string Friday, string Saturday, string crt_User,string Doc_No)
+        {
+            DoctorCRUD model1 = new DoctorCRUD();
+            string str = model1.Save_days(Sunday, Monday, Tuseday, Wednessday, Thursday, Friday, Saturday, crt_User, Doc_No);
+            return str;
+
+        }
+        public JsonResult showAvailableDays()
+        {
+            DoctorCRUD model2 = new DoctorCRUD();
+            DataTable dtlogin = model2.showAvailableDays();
+            List<Dictionary<string, object>> lstvisitlist = model2.GetTableRows(dtlogin);
+            return Json(lstvisitlist, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult  SendEmail()
+        {
+           // Random rand = new Random();
+           // string otpno = Convert.ToString(rand.Next(100000, 999999));
+
+            string email = "sujat.khan@srms.ac.in";//Session["uname"].ToString();
+            string a = "Sujat Khan";// Session["fname"].ToString();
+            string ordt = System.DateTime.Today.ToString();
+            string filename = Server.MapPath("~/Event_P.html");
+            string mailbody = System.IO.File.ReadAllText(filename);
+            mailbody = mailbody.Replace("##NAME##", a);
+            //drpbankname
+            mailbody = mailbody.Replace("##pmt_id##", "Hii");
+            mailbody = mailbody.Replace("##lblpayment##", "SK");
+            mailbody = mailbody.Replace("##ordt##", "2024-05-21"); 
+            string to = email;
+            string from = "dotnetteam017@gmail.com";
+
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = "Auto Response Email";
+            message.Body = mailbody;
+            message.BodyEncoding = Encoding.UTF8;
+            message.IsBodyHtml = true;
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            System.Net.NetworkCredential basicCredential = new System.Net.NetworkCredential("dotnetteam017@gmail.com", "lqhkiohakgydasxm");
+            //System.Net.NetworkCredential basicCredential = new System.Net.NetworkCredential("dotnetteam017@gmail.com", "ddfg");
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = true;
+            client.Credentials = basicCredential;
+
+
+            //System.Timers.Timer time = new System.Timers.Timer();
+            //time.Start();
+            //time.Interval = 120000;// 300000;// 300000 5 minut
+            //time.Elapsed += Timer_Tick;
+            try
+            {
+                client.Send(message);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Err = "error" + ex;
+            }
+            // return "123456";
+            return Json(email, JsonRequestBehavior.AllowGet);
+        }
+    }
+}
