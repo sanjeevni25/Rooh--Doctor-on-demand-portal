@@ -1,0 +1,2276 @@
+@model Rooh.Models.PostRoohData
+@{
+    ViewBag.Title = "Home Page";
+
+}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/css/index.css" rel="stylesheet" />
+<script src="~/Content/js/index.js"></script>
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/sideview.css" rel="stylesheet" />
+<script src="https://kit.fontawesome.com/51a2ec59b5.js" crossorigin="anonymous"></script>
+<script>
+    //funtion to open menu
+    function openSideMenu() {
+        document.getElementById("side-nav").style.display = "block";
+        document.getElementById("side-nav").style.width = "70%";
+    }
+    //funtion to close menu
+    function closeSideMenu() {
+        document.getElementById("side-nav").style.width = "0";
+        document.getElementById("side-nav").style.display = "none";
+    }
+
+    function openSignUpMenu() {
+        document.getElementById("modal_signup_account").style.display = "block";
+        document.getElementById("modaluserlogin").style.display = "none";
+        }
+    
+
+
+    function openLoginMenu() {
+        document.getElementById("modaluserlogin").style.display = "block";
+        document.getElementById("modal_signup_account").style.display = "none";
+    }
+
+</script>
+
+<style>
+    .menu.active {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        visibility: visible !important;
+        position: absolute;
+        z-index: 999999;
+    }
+
+    .showcase {
+        width: 100%;
+        height: 500px;
+        position: relative;
+        color: white;
+        text-align: center;
+    }
+
+        .showcase img {
+            width: 100%;
+            height: 90%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            /*z-index: 99;*/
+            z-index: -1;
+        }
+
+        .showcase .overlay {
+            width: 100%;
+            height: 90%;
+            background-color: rgb(37 35 34 / 38%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        .showcase h2 {
+            margin-top: 170px;
+            font-size: 3em;
+        }
+
+        .showcase p {
+            margin-top: 8px;
+            font-size: 1.2em;
+        }
+
+    .navbar #nav-menu a:hover {
+        color: #000000;
+        border-bottom: 3px solid #000000;
+    }
+
+    .mapt {
+        position: absolute;
+        bottom: 0;
+        left: 50px;
+        margin-bottom: 145px;
+        background: #b1916b;
+    }
+
+
+
+    .header-nav .profile {
+        min-width: 240px !important;
+        padding-bottom: 0 !important;
+        top: 8px !important;
+    }
+
+
+    .rounded-circle {
+        border-radius: 50% !important;
+        font-size: 15px;
+        font-weight: bolder;
+        color: white;
+        text-decoration: none;
+    }
+
+    .sizedropdown {
+        position: absolute !important;
+        right: 0px !important;
+        min-width: 240px;
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-zindex: 1000;
+        --bs-dropdown-min-width: 240px;
+        --bs-dropdown-padding-x: 0;
+        --bs-dropdown-padding-y: 0.5rem;
+        --bs-dropdown-spacer: 0.125rem;
+        --bs-dropdown-font-size: 1rem;
+        --bs-dropdown-color: #212529;
+        --bs-dropdown-bg: #fff;
+        --bs-dropdown-border-color: var(--bs-border-color-translucent);
+        --bs-dropdown-border-radius: 0.375rem;
+        --bs-dropdown-border-width: 1px;
+        --bs-dropdown-inner-border-radius: calc(0.375rem - 1px);
+        --bs-dropdown-divider-bg: var(--bs-border-color-translucent);
+        --bs-dropdown-divider-margin-y: 0.5rem;
+        --bs-dropdown-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        --bs-dropdown-link-color: #212529;
+        --bs-dropdown-link-hover-color: #1e2125;
+        --bs-dropdown-link-hover-bg: #e9ecef;
+        --bs-dropdown-link-active-color: #fff;
+        --bs-dropdown-link-active-bg: #0d6efd;
+        --bs-dropdown-link-disabled-color: #adb5bd;
+        --bs-dropdown-item-padding-x: 1rem;
+        --bs-dropdown-item-padding-y: 0.25rem;
+        --bs-dropdown-header-color: #6c757d;
+        --bs-dropdown-header-padding-x: 1rem;
+        --bs-dropdown-header-padding-y: 0.5rem;
+        position: absolute;
+        z-index: var(--bs-dropdown-zindex);
+        display: none;
+        min-width: var(--bs-dropdown-min-width);
+        padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);
+        margin: 0;
+        font-size: var(--bs-dropdown-font-size);
+        color: var(--bs-dropdown-color);
+        text-align: left;
+        list-style: none;
+        background-color: var(--bs-dropdown-bg);
+        background-clip: padding-box;
+        border: var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);
+        border-radius: var(--bs-dropdown-border-radius);
+    }
+
+
+    #dropdown-header {
+        font-size: large !important;
+        color: white !important;
+    }
+</style>
+
+
+<div class="row">
+    <div class="container-fluid">
+        <!-- start header -->
+        <div class="navbar">
+            <div class="logo" style="margin-left: auto; margin-right: auto; position: absolute; left: 53px;">
+                <img src="https://yt3.googleusercontent.com/SwShRBdjtlvg5GtROjQgbLb8tvsMJNxOHpoCl_v3srJsajewNK8EerbxvYr2snsnAG7SA50K=s900-c-k-c0x00ffffff-no-rj" style="width: 55px;">
+            </div>
+            <div id="nav-icon">
+                <a href="#" class="open-btn" onclick='openSideMenu()'>&#9776;</a>
+                @*<a href="#" class="close-btn" onclick="closeSideMenu()"><i class="fa-solid fa-xmark"></i></a>*@
+            </div>
+            <nav id="nav-menu">
+                <a href="#home" class="fa-solid fa-house"> Home</a>
+                <a href="#about" class="fa-solid fa-info"> About Us</a>
+                <a href="#contact_us" class="fa-solid fa-phone-volume"> Contact Us</a>
+                <a class="fa-solid fa-user" onclick="CreateAccount();"> Create Account</a>
+                <a class="fa-solid fa-right-to-bracket" onclick="FormLogin();"> Login</a>
+
+
+                <!-- End Profile Dropdown Items -->
+            </nav>
+
+            <nav id="disp">
+
+                <div class="profile">
+
+                    <div class="user">
+                        <p style="color:white;">HI </p>
+                        <h3 id="profilename" style="color:white;"></h3>
+
+                    </div>
+                    <div class="img-box">
+                        <img src="https://i.postimg.cc/BvNYhMHS/user-img.jpg" id="img-box1" style="display: none;">
+                        @*<img src="~/Content/1_UMV-TY-CRJRWxwooRMQpEg.png"  style="display: none; />*@
+                    </div>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="#"><i class="ph-bold ph-user"></i>&nbsp;Profile</a></li>
+                        <li><a onclick="userdash();"><i class="ph-bold ph-envelope-simple"></i>&nbsp;Dashboard</a></li>
+                        <li><a href="#"><i class="ph-bold ph-gear-six"></i>&nbsp;Settings</a></li>
+                        <li><a href="#"><i class="ph-bold ph-question"></i>&nbsp;Help</a></li>
+                        <li><a onclick="signout();"><i class="ph-bold ph-sign-out"></i>&nbsp;Sign Out</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="side-nav" style="display: block; width: 70%;">
+                <div class="logo" style="margin-left: auto; margin-right: auto; position: absolute; left: 53px; position: absolute; left: 0; ">
+                    <img src="https://yt3.googleusercontent.com/SwShRBdjtlvg5GtROjQgbLb8tvsMJNxOHpoCl_v3srJsajewNK8EerbxvYr2snsnAG7SA50K=s900-c-k-c0x00ffffff-no-rj" style="width: 55px;">
+                </div>
+                <a href="#" class="close-btn" onclick="closeSideMenu()"><i class="fa-solid fa-xmark"></i></a>
+
+                <div class="select-menu active">
+
+                    <ul class="options" style="width: 100%; background: #3158a5;">
+                        <li class="option">
+                            <i class="fa fa-house" style="color: #E1306C;"></i>
+                            <a href="#home" onclick="Home();">Home</a>
+                        </li>
+                        <li class="option">
+                            <i class="fa-solid fa-info" style="color: #E1306C;"></i>
+                            <a href="#about" onclick="About();">About Us</a>
+                        </li>
+                        <li class="option">
+                            <i class="fa-solid fa-phone-volume" style="color: #E1306C;"></i>
+                            <a href="#contact_us" onclick="Contact();">Contact Us</a>
+                        </li>
+                        <li class="option">
+                            <i class="fa-solid fa-user" style="color: #E1306C;"></i>
+                            <a onclick="CreateAccount();">Create Account</a>
+                        </li>
+                        <li class="option">
+                            <i class="fa-solid fa-right-to-bracket" style="color: #1DA1F2;"></i>
+                            <a onclick="FormLogin();">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <section id="home" class="home showcase">
+
+            <img src="~/Content/doctor appointment.png" />
+            <div class="overlay">
+                <a class="btn mapt" onclick="makeappointment();">Make appointment</a>
+                @*<p>
+                        It's just a simple overlay without using the background-image property in CSS
+                    </p>*@
+            </div>
+
+
+        </section>
+        <!-- end home -->
+        <!-- about -->
+
+        <section id="about" class="about">
+
+            <h1 class="heading"> about us </h1>
+
+            <!--   content -->
+            <div class="row">
+
+                <!--     image -->
+                <div class="image">
+                    <img src="https://www.orchestratehealth.com/wp-content/uploads/2023/04/What-Is-a-Community-Psychiatric-Nurse-A-Look-At-Mental-Health-In-The-Home-jpg.webp" alt="medical equipment">
+                </div>
+
+                <!--     info -->
+                <div class="content">
+                    <h3>our clinic is made for you to be happy all the time</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta natus alias eaque sapiente tempore sint expedita perferendi.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta natus alias eaque sapiente tempore sint expedita perferendi.</p>
+                    <a href="#" class="btn">read more</a>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- end about -->
+        <!-- services -->
+
+        <section id="services" class="services">
+
+            <h1 class="heading"> our services </h1>
+
+            <div class="box-container">
+                <!--     start field -->
+                @*<div class="our_services">*@
+                <div class="box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVUCw4e4oUGtlkv9vZGxsJfjfpRnvY1y1-FQ&s" alt="Collaborative Care" style="min-width: 145px; max-width: 155px;">
+                    <h3>Collaborative Care</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque quasi.</p>
+                </div>
+                <!--     end field -->
+                <!--     start field -->
+                <div class="box">
+                    <img src="https://t4.ftcdn.net/jpg/03/84/73/15/360_F_384731537_F8A2VBU4OWRf1FWnIkpl73Z4fPPUY2Te.jpg" alt="Psychotherapy" style="min-width: 145px; max-width: 155px;">
+                    <h3>Psychotherapy</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque quasi.</p>
+                </div>
+                <!--     end field -->
+                <!--     start field -->
+                <div class="box">
+                    <img src="https://media.istockphoto.com/id/1310277551/vector/happy-healthy-brain-mind-character-meditation-yoga-relax-health-brain-mental-organ-sit-in.jpg?s=612x612&w=0&k=20&c=sei6jMApCiXroaZcvnoIJzI5cpNFs6CqMCV2KOiM3WA=" alt="Psychiatric" style="min-width: 145px; max-width: 155px;">
+                    <h3>Psychiatric</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque quasi.</p>
+                </div>
+                <!--     end field -->
+                <!--     start field -->
+                <div class="box">
+                    <img src="https://img.freepik.com/premium-vector/friendly-group-hospital-medical-staff-hand-drawn-style-vector-design-illustrations_650511-326.jpg" alt="Support Group" style="min-width: 145px; max-width: 155px;">
+                    <h3>Support Group</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque quasi.</p>
+                </div>
+                <!--     end field -->
+                <!--     start field -->
+                <div class="box">
+                    <img src="https://www.shutterstock.com/image-vector/medicine-concept-practitioner-doctor-woman-260nw-492252856.jpg" alt="Free Counselling Session" style="min-width: 145px; max-width: 155px;">
+                    <h3>Free Counselling Session</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque quasi.</p>
+                </div>
+                <!--     end field -->
+                @*</div>*@
+
+            </div>
+
+        </section>
+
+
+        <!-- pricing plan -->
+        <!--<section id="pricing" class="pricing">
+
+        <h1 class="heading">pricing plan</h1>
+
+        <div class="box-container">-->
+        <!--     start card -->
+        <!--<div class="box">
+
+            <h3 class="title">basic</h3>
+
+            <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">18</span>
+                <span class="duration"> /year</span>
+            </div>
+
+            <ul>
+                <li><i class="fas fa-check"></i> alignment specialist</li>
+                <li><i class="fas fa-check"></i> cavity inspection</li>
+                <li><i class="fas fa-check"></i> cosmetic dentistry</li>
+                <li><i class="fas fa-check"></i> oral hygiene experts</li>
+            </ul>
+
+            <a href="#" class="btn">read more</a>
+        </div>-->
+        <!--     end card -->
+        <!--     start card -->
+        <!--<div class="box active">
+
+            <h3 class="title">standard</h3>
+
+            <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">30</span>
+                <span class="duration"> /year</span>
+            </div>
+
+            <ul>
+                <li><i class="fas fa-check"></i> alignment specialist</li>
+                <li><i class="fas fa-check"></i> cavity inspection</li>
+                <li><i class="fas fa-check"></i> cosmetic dentistry</li>
+                <li><i class="fas fa-check"></i> oral hygiene experts</li>
+            </ul>
+
+            <a href="#" class="btn">read more</a>
+        </div>-->
+        <!--     end card -->
+        <!--     start card -->
+        <!--<div class="box">
+
+            <h3 class="title">premium</h3>
+
+            <div class="price">
+                <span class="currency">$</span>
+                <span class="amount">50</span>
+                <span class="duration"> /year</span>
+            </div>
+
+            <ul>
+                <li><i class="fas fa-check"></i> alignment specialist</li>
+                <li><i class="fas fa-check"></i> cavity inspection</li>
+                <li><i class="fas fa-check"></i> cosmetic dentistry</li>
+                <li><i class="fas fa-check"></i> oral hygiene experts</li>
+            </ul>
+
+            <a href="#" class="btn">read more</a>
+        </div>-->
+        <!--     end card -->
+        <!--</div>
+
+        </section>-->
+        <!-- end pricing plan -->
+        <!-- blog -->
+
+        <section id="blog" class="blog">
+
+            <h1 class="heading">our blogs</h1>
+
+            <div class="box-container">
+
+                <!--     start post  -->
+                <div class="box" style="background: #3598ed70; height: 500px; border-radius: 40px;">
+
+                    <!--       image -->
+                    <div class="image" style="border-radius: 30px; height:170px;">
+                        <img src="https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <!--         blog content -->
+                    <div class="content">
+                        <a href="#" class="link">Disease</a>
+
+                        <div class="icons">
+
+                            <a href="#"> <i class="fas fa-calendar"> </i>01<sup>st</sup> October, 2022</a>
+
+                            <a href="#"><i class="fas fa-user"></i>by admin</a>
+
+                        </div>
+                        <h3>The most common problems?</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores ratione eum, eius, quidem beatae excepturi, odio eligendi ...</p>
+                        <a href="" class="btn">read more</a>
+                    </div>
+                    <!--         end content -->
+
+                </div>
+                <!--     end post -->
+                <!--     start post  -->
+                <div class="box" style="background: #3598ed70; height: 500px; border-radius: 40px;">
+
+                    <!--       image -->
+                    <div class="image" style="border-radius: 30px; height: 170px;">
+                        <img src="https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <!--         blog content -->
+                    <div class="content">
+                        <a href="#" class="link">Disease</a>
+
+                        <div class="icons">
+
+                            <a href="#"> <i class="fas fa-calendar"> </i>01<sup>st</sup> October, 2022</a>
+
+                            <a href="#"><i class="fas fa-user"></i>by admin</a>
+
+                        </div>
+                        <h3>The most common problems?</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores ratione eum, eius, quidem beatae excepturi, odio eligendi ...</p>
+                        <a href="" class="btn">read more</a>
+                    </div>
+                    <!--         end content -->
+
+                </div>
+                <!--     end post -->
+                <!--     start post  -->
+                <div class="box" style="background: #3598ed70; height: 500px; border-radius: 40px;">
+
+                    <!--       image -->
+                    <div class="image" style="border-radius:30px; height: 170px;">
+                        <img src="https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <!--         blog content -->
+                    <div class="content">
+                        <a href="#" class="link">Disease</a>
+
+                        <div class="icons">
+
+                            <a href="#"> <i class="fas fa-calendar"> </i>01<sup>st</sup> October, 2022</a>
+
+                            <a href="#"><i class="fas fa-user"></i>by admin</a>
+
+                        </div>
+                        <h3>The most common problems?</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores ratione eum, eius, quidem beatae excepturi, odio eligendi ...</p>
+                        <a href="" class="btn">read more</a>
+                    </div>
+                    <!--         end content -->
+
+                </div>
+                <!--     end post -->
+                <!--     start post  -->
+                <div class="box" style="background: #3598ed70; height: 500px; border-radius: 40px;">
+
+                    <!--       image -->
+                    <div class="image" style="border-radius: 30px; height: 170px;">
+                        <img src="https://images.pexels.com/photos/3845625/pexels-photo-3845625.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <!--         blog content -->
+                    <div class="content">
+                        <a href="#" class="link">Disease</a>
+
+                        <div class="icons">
+
+                            <a href="#"> <i class="fas fa-calendar"> </i>01<sup>st</sup> October, 2022</a>
+
+                            <a href="#"><i class="fas fa-user"></i>by admin</a>
+
+                        </div>
+                        <h3>The most common problems?</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores ratione eum, eius, quidem beatae excepturi, odio eligendi ...</p>
+                        <a href="" class="btn">read more</a>
+                    </div>
+                    <!--         end content -->
+
+                </div>
+                <!--     end post -->
+
+            </div>
+
+        </section>
+
+        <!-- end blog -->
+        <!-- contact -->
+        <section id="contact_us" class="contact_us">
+
+            <h1 class="heading"> contact us </h1>
+
+            <div class="box-container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div style="width: 100%;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2965.0824050173574!2d-93.63905729999999!3d41.998507000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWebFilings%2C+University+Boulevard%2C+Ames%2C+IA!5e0!3m2!1sen!2sus!4v1390839289319" style="border:0; width:100%; height:435px; frameborder:0"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-body">
+
+
+                                    <div class="wrapper">
+                                        <div class="title">
+                                            Contact Us
+                                        </div>
+
+                                        <div class="marquee"> </div>
+                                        <div class="container">
+                                            <div>
+                                                <div class="row" style="padding:10px; position:relative;">
+                                                    <div class="col-sm-6">
+                                                        <label> Name </label>
+                                                        <input id="Name" placeholder="Name" type="text" class="form-control">
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <label>Age</label> <br>
+                                                        <input id="Age" placeholder="Age" type="number" class="form-control">
+                                                    </div>
+
+
+                                                    <div class="col-sm-6">
+                                                        <label>Address</label> <br>
+                                                        <input id="Address" placeholder="Address" type="text" class="form-control">
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <label>Contact No</label> <br>
+                                                        <input id="Contact No" placeholder="Contact No" type="tel" class="form-control">
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <label> Any query??? </label>
+                                                        <textarea id="Query" placeholder="Write your query" rows="3" class="form-control"> </textarea>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="wrapper">
+                                                            <button class="btn" style="border: 0.5px solid #00000075; background: linear-gradient(-135deg, #c850c0, #4158d0); width: 100%; ">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- contact ends -->
+    <!-- footer -->
+    <footer>
+        <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa-solid fa-angle-up"></i></button>
+    </footer>
+
+    <div class="modal" id="modal_signup_account" tabindex="-1" role="dialog" aria-labelledby="userlogin"
+         style="height: 90%; min-height: 90%; max-height: 90%;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+
+                    <h2 class="card-title">Sign Up</h2>
+                    @*<a href="#" class="close-btn" onclick="closeSignUpMenu()"><i class="fa-solid fa-xmark"></i></a>*@
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+
+
+                            <div class="wrapper">
+                                <div class="title">
+                                    Create Account
+                                </div>
+                                <div class="form">
+                                    <div class="field">
+                                        <input type="text" id="user_name" autocomplete="off" required>
+                                        <label>User Name</label>
+                                    </div>
+                                    <div class="field">
+                                        <input type="tel" id="mob_no" autocomplete="off" required>
+                                        <label>Mobile No</label>
+                                    </div>
+                                    <div class="field">
+                                        <input type="text" id="user_email" autocomplete="off" required>
+                                        <label>Email Address</label>
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" id="user_pwd" autocomplete="off" required>
+                                        <label>Password</label>
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" id="confirm_pwd" autocomplete="off" required>
+                                        <label>Confirm Password</label>
+                                    </div>
+                                    <div class="field">
+                                        <input type="submit" value="Sign Up" onclick="userlogin();">
+                                    </div>
+                                    <div class="signup-link">
+                                        Already have an account? <a href="#" class="#modaluserlogin" onclick='openLoginMenu()' data-dismiss="modal">login</a> to your account
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="modaluserlogin" tabindex="-1" role="dialog" aria-labelledby="userlogin"
+         style="height: 90%; min-height: 90%; max-height: 90%;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h2 class="card-title">Login</h2>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+
+
+                            <div class="wrapper">
+                                <div class="title">
+                                    Login Form
+                                </div>
+                                <div class="form">
+                                    <div class="field">
+                                        <input type="text" id="user_email" autocomplete="off" required>
+                                        <label>Email Address</label>
+                                    </div>
+                                    <div class="field">
+                                        <input type="password" id="user_pwd" autocomplete="off" required>
+                                        <label>Password</label>
+                                    </div>
+                                    <div class="content">
+
+                                        <div class="pass-link">
+                                            <a href="#">Forgot password?</a>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <input type="submit" value="Login" onclick="CreateAccount();">
+                                    </div>
+                                    <div class="signup-link">
+                                        Don't have an account??<a href="#" class="modal_signup_account" onclick='openSignUpMenu()' data-dismiss="modal">sign up</a> now
+                                        @*Not a member?  <a href="#" class="#modal_signup_account" onclick='openSignUpMenu()'>sign up</a> now*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="modal" id="modalappointment" tabindex="-1" role="dialog" aria-labelledby="varyappointment"
+         style="height: 90%; min-height: 90%; max-height: 90%;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <style>
+                        .modal-header .close {
+                            margin-top: -2px;
+                            right: 16px;
+                            position: absolute;
+                            color: white;
+                            background: red;
+                            opacity: 1;
+                            border-radius: 2px;
+                        }
+                    </style>
+                    <h2 class="card-title">Make  Appointment</h2>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <style>
+                        label {
+                            font-size: 14px;
+                        }
+
+                        .form-control {
+                            display: block;
+                            width: 100%;
+                            padding: .375rem .75rem;
+                            font-size: 14px;
+                        }
+
+                        .form-select {
+                            line-height: 2.1rem;
+                            font-size: 15px;
+                        }
+
+                        input, select, textarea {
+                            max-width: 100% !important;
+                        }
+                    </style>
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!-- Floating Labels Form -->
+                            <div class="row g-3">
+
+                                <div class="col-md-12">
+                                    <label for="pt_RooID">Patient Rh ID</label>
+                                    <input type="text" class="form-control" id="pt_rhid" />
+                                    @*value="R04153456"   value="R.K Sharma" value="rksharma@gmail.com value="8987654321""*@
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="pt_Username">Username</label>
+                                    <input type="text" class="form-control" id="pt_Username" />
+
+
+                                </div>
+                                <div class="col-md-8">
+                                    <label for="pt_Email">Email</label>
+                                    <input type="email" class="form-control" id="pt_Email" />
+
+
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="pt_mobileno">Mobile No</label>
+                                    <input type="text" class="form-control" id="pt_mobileno" maxlength="10" />
+
+
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="pt_Age">Age</label>
+                                    <input type="text" class="form-control" id="pt_Age" value="32" maxlength="2" />
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="pt_Gender">Gender</label>
+                                    <select class="form-select" id="pt_Gender" aria-label="Gender">
+                                        <option>Select </option>
+                                        <option value="Male" selected>Male</option>
+                                        <option value="Female">Female</option>
+
+                                    </select>
+
+                                </div>
+                                <div class=" col-md-4">
+                                    <label for="country">Country</label>
+                                    <select id="country" class="form-control" onchange="getstate();">
+                                    </select>
+                                </div>
+                                <div class="mt-1 col-md-4">
+                                    <label for="state">State</label>
+                                    <select id="state" class="form-select" onchange="getcity();">
+                                    </select>
+                                </div>
+                                <div class="mt-1 col-md-4">
+                                    <label for="city">City</label>
+                                    <select id="city" class="form-select">
+                                    </select>
+                                </div>
+
+                                <div class="mt-1 col-md-4">
+                                    <label for="pt_Pincode">Pincode</label>
+                                    <input type="text" class="form-control" id="pt_Pincode" maxlength="6" />
+
+
+                                </div>
+                                <div class="mt-1 col-md-12">
+                                    <label for="pt_Pincode">Address</label>
+                                    <input type="text" class="form-control" id="pt_address" />
+
+
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="pt_uploadhis">Upload History</label>
+                                    <input type="file" class="form-control" id="pt_uploadhis" onChange='SaveMaterial()' />
+
+                                    <input type="hidden" id="pathname" />
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="pt_Symptoms">Symptoms</label>
+                                    <input type="text" class="form-control" id="pt_Symptoms" />
+                                </div>
+
+
+
+                                <div class="col-md-4">
+                                    <label for="pt_anyrelinf">Any Relevant Info.</label>
+                                    <input type="text" class="form-control" id="pt_anyrelinfo" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="pt_serv">Choose Service</label>
+                                    <select class="form-select" id="pt_serv" aria-label="Doctor " onchange="select_sub_service();">
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="pt_serv">Choose Sub Service</label>
+                                    <select class="form-select" id="pt_sub_serv" aria-label="Doctor ">
+                                    </select>
+                                </div>
+                                <div class="col-md-6 hidedoctors">
+                                    <label for="Pschologist_doc">Clinical Pschologist</label>
+                                    <select class="form-select" id="Pschologist_doc" onchange="getdoctor_available_days();">
+                                    </select>
+                                </div>
+                                <div class="col-md-6 hidedoctors">
+                                    <label for="Psychiatric_Doctor">Psychiatrist</label>
+                                    <select class="form-select" id="Psychiatric_Doctor" onchange="getdoctor_available_days2();">
+                                    </select>
+                                </div>
+
+
+                                <div class="col-md-4 mt-3 hidedoctors">
+                                    <i class="  bx bxs-calendar"></i>  
+                                    <label class="form-label" for="Date">Date</label>
+
+                                    <input type='text' id='txtDate' class="form-control" onkeyup="get_dates_asper_days();" autocomplete="off" />
+
+                                </div>
+
+                                <div class="col-md-4 mt-3 hidedoctorsUDT">
+                                    <i class="  bx bxs-calendar"></i>  <label class="form-label" for="Date">
+                                        Select Suitable Date
+
+                                    </label>
+
+                                    <input type='date' id='txtDate2' class="form-control" />
+
+                                </div>
+
+                                <div class="col-md-4 mt-3 hsftime">
+                                    <label class="form-label" for="To-time">
+                                        Select Suitable  From Time
+                                    </label>
+                                    <input class="form-control" type="time" id="Fro_time">
+
+                                </div>
+
+                                <div class="col-md-4 mt-3 hsftime">
+                                    <label class="form-label" for="from-time">
+                                        Select Suitable To Time
+                                    </label>
+                                    <input class="form-control" type="time" id="to_time">
+
+                                </div>
+                                <div class="col-md-12 mt-3 hidedoctorsUDT">
+                                    <label class="form-label" for="from-time">
+                                        Would you like to call our Team !
+                                        It's free video conference
+                                    </label><br />
+                                    <span style="color: #ff3a54; font-size: 2rem; font-weight: 700; position: relative; top: 10px; border: 1px solid gray; padding: 8px; border-radius: 5px;">15 mins Free Video Call</span>
+                                    <button type="submit" class="btn btn-danger" style="background-color: #d9534f; border-color: #d43f3a;" onclick="free_call_connect();">Connect</button>
+
+                                </div>
+                                <div class="form-check col-md-6 mt-3">
+                                    <input type="checkbox" name="appchk" value="0" id="appchk">
+                                    <label for="Sunday">I accept terms and conditions</label>
+                                </div>
+                                <div class="form-check col-md-12 mt-3">
+                                    <p style="font-size: 14px; border: 1px solid gray; padding: 10px; text-align: justify; ">
+                                        Hello and welcome I'm Larry bow the chief executive of Providence Holy Cross Medical Center during your stay with us our staff of physicians nurses and their support team are committed deliver care and a compassionate and respectful manner your comfort and access to quality care is a great importance to us together we are dedicated to providing the skills and services necessary to give you excellent family-centered care thank you for taking a few minutes to view this orientation video we hope it will answer your most immediate questions and concerns about your stay here with us hi my name is Sarah, and I'm a registered nurse here at Providence Holy Cross Medical Center I'm going to talk about what you can expect from our staff and how you can become an active member of your wellness team if you haven't already received an in-person orientation I want to point out a few things about your room your nurse and nursing assistant we'll go over everything in more detail so don't worry if you have more questions after watching this video first the nurse call button is located on the remote by your side use this red button to call for assistance whenever you feel you need help for example when you're getting in or out of bed it's easy to slip and fall if you feel weak or unfamiliar with the room press the red button to let the monitor at the central desk know you need assistance the monitor will notify your nurse and they or another member of their team will come to your assistance as quickly as possible
+                                    </p>
+                                </div>
+
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" onclick="save_Appoinment();">Submit</button>
+                                    <button type="reset" class="btn btn-secondary" onclick="cleardetail();">Reset</button>
+                                </div>
+
+                            </div>
+
+
+                            <!-- End floating Labels Form -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+        
+
+                        <style>
+                            .form-floating {
+                                position: relative;
+                                margin-bottom: 4px;
+                            }
+
+
+                            .selcs {
+                                width: 100%;
+                                border: 1px solid;
+                            }
+
+                            .bt {
+                                margin-top: 1rem !important;
+                                display: inline-block;
+                                padding: 1rem 3rem;
+                                border-radius: .5rem;
+                                background: var(--primary);
+                                font-size: 1.7rem;
+                                color: var(--white);
+                                cursor: pointer;
+                                margin: calc(var(--bs-modal-footer-gap)* .5);
+                            }
+
+
+
+
+                            .menu-toggle {
+                                position: relative;
+                                width: 40px;
+                                height: 40px;
+                                cursor: not-allowed;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                                .menu-toggle::before {
+                                    content: '';
+                                    position: absolute;
+                                    width: 24px;
+                                    height: 4px;
+                                    background: #000;
+                                }
+
+                            /* profile menu */
+
+                            .profile {
+                                position: relative;
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                                gap: 12px;
+                                cursor: pointer;
+                                text-align: end;
+                                left: 17rem;
+                                /*left: 71%;*/
+                            }
+
+                                .profile h3 {
+                                    text-align: end;
+                                    line-height: 1;
+                                    margin-bottom: 4px;
+                                    font-weight: 600;
+                                }
+
+                                .profile p {
+                                    line-height: 1;
+                                    font-size: 14px;
+                                    opacity: .6;
+                                }
+
+                                .profile .img-box {
+                                    position: relative;
+                                    width: 48px;
+                                    height: 48px;
+                                    border-radius: 50%;
+                                    overflow: hidden;
+                                }
+
+                                    .profile .img-box img {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
+
+                            /* menu (the right one) */
+
+                            .menu {
+                                position: absolute;
+                                top: calc(100% + 24px);
+                                right: 16px;
+                                width: 200px;
+                                min-height: 100px;
+                                background: #fff;
+                                box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+                                opacity: 0;
+                                transform: translateY(-10px);
+                                visibility: hidden;
+                                transition: 300ms;
+                            }
+
+                                .menu::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: -10px;
+                                    right: 14px;
+                                    width: 20px;
+                                    height: 20px;
+                                    background: #fff;
+                                    transform: rotate(45deg);
+                                    z-index: -1;
+                                }
+
+
+
+                                /* menu links */
+
+                                .menu ul {
+                                    position: relative;
+                                    display: flex;
+                                    flex-direction: column;
+                                    z-index: 10;
+                                    background: #fff;
+                                }
+
+                                    .menu ul li {
+                                        list-style: none;
+                                    }
+
+                                        .menu ul li:hover {
+                                            background: #eee;
+                                        }
+
+                                        .menu ul li a {
+                                            text-decoration: none;
+                                            color: #000;
+                                            display: flex;
+                                            align-items: center;
+                                            padding: 15px 20px;
+                                            gap: 6px;
+                                        }
+
+                                            .menu ul li a i {
+                                                font-size: 1.2em;
+                                            }
+                        </style>
+
+
+                        <script>
+
+                            let mybutton = document.getElementById("myBtn");
+
+                            // When the user scrolls down 20px from the top of the document, show the button
+                            window.onscroll = function () { scrollFunction() };
+
+                            function scrollFunction() {
+                                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                                    mybutton.style.display = "block";
+                                } else {
+                                    mybutton.style.display = "none";
+                                }
+                            }
+
+                            // When the user clicks on the button, scroll to the top of the document
+                            function topFunction() {
+                                document.body.scrollTop = 0;
+                                document.documentElement.scrollTop = 0;
+                            }
+
+                            $(document).ready(function () {
+                                debugger
+                                var Rpt_No = localStorage.getItem("Rpt_No");
+                                var Username = localStorage.getItem("Username");
+                                var Email = localStorage.getItem("Email");
+                                var Mobileno = localStorage.getItem("Mobileno");
+                                if (Rpt_No == null || Rpt_No == '' || Rpt_No == undefined) {
+                                    document.getElementById("disp").style.display = "none";
+
+                                }
+                                else {
+                                    document.getElementById("disp").style.display = "block";
+                                    $('#pt_rhid').val(Rpt_No);
+
+                                    $('#profilename').text(Username);
+                                    $('#pt_Username').val(Username);
+                                    $('#pt_Email').val(Email);
+                                    $('#pt_mobileno').val(Mobileno);
+                                    $('#modaluserlogin').modal('hide');
+                                    $(".rounded-circle").css("display", "block");
+                                    $("#img-box1").css("display", "block");
+                                    $("#lblprofileid").css("display", "block");
+
+                                    getcountry();
+                                    getPsychiatric_doc();
+                                    getPschologist_doc();
+                                    getService();
+
+                                }
+                                $('.hidedoctors').hide();
+                                $('.hidedoctorsUDT').hide();
+                                $('.hsftime').hide();
+
+                                //pt_serv
+                                //alert('j');
+                            });
+                            function Appointment() {
+                                $('#modalremarks').modal('show');
+                            }
+
+                            function CreateAccount() {
+                                document.getElementById("side-nav").style.width = "0";
+                                document.getElementById("side-nav").style.display = "none";
+                                $('#modal_signup_account').modal('show');
+                            }
+
+                            function makeappointment() {
+                                var Rpt_No = localStorage.getItem("Rpt_No");
+                                var Username = localStorage.getItem("Username");
+                                var Email = localStorage.getItem("Email");
+                                var Mobileno = localStorage.getItem("Mobileno");
+                                if (Rpt_No == null || Rpt_No == '' || Rpt_No == undefined) {
+
+
+                                    alert("To Make Appointment  Click to Login");
+
+                                    $('#modalappointment').modal('hide');
+                                }
+                                else {
+
+                                    $('#modalappointment').modal('show');
+                                    return;
+
+                                }
+
+                                //checking User Is Login or Not
+
+                            }
+
+                            function signup() {
+                                debugger;
+                                var usrname = $('#pt_usrname1').val();
+                                var email = $("#pt_email1").val();
+                                var mobileno = $("#pt_mobileno1").val();
+                                var Password = $("#pt_Password1").val();
+                                var Password2 = $("#pt_Password2").val();
+
+                                if (Password != Password2) {
+                                    alert("Password & Confirm Password be must Same  !!!");
+                                    return;
+                                }
+
+                                if ((usrname == null) || (usrname == '0') || (usrname == "undefined") || (usrname == '')) {
+                                    alert("Fill Username");
+                                    $('#pt_usrname1').focus();
+                                    return;
+                                }
+
+                                if ((email == null) || (email == '0') || (email == "undefined") || (email == '')) {
+                                    alert("Fill Email");
+                                    $('#pt_email1').focus();
+                                    return;
+                                }
+
+                                if ((mobileno == null) || (mobileno == '0') || (mobileno == "undefined") || (mobileno == '')) {
+                                    alert("Fill Mobileno");
+                                    $('#pt_mobileno1').focus();
+                                    return;
+                                }
+
+                                if ((Password == null) || (Password == '0') || (Password == "undefined") || (Password == '')) {
+                                    alert("Fill Password");
+                                    $('#pt_Password1').focus();
+                                    return;
+                                }
+
+                                if ((Password2 == null) || (Password2 == '0') || (Password2 == "undefined") || (Password2 == '')) {
+                                    alert("Fill Password2");
+                                    $('#pt_Password2').focus();
+                                    return;
+                                }
+
+
+
+                                var urlgetcode = '../Home/SaveSignup';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '{usrname:"' + usrname + '",email:"' + email + '",mobileno:"' + mobileno + '",Password:"' + Password + '"}',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        if (msg < 0) {
+                                            alert('error');
+                                        }
+                                        else {
+                                            alert('Signup Successfully');
+                                        }
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+
+                            }
+
+                            function validatenumber() {
+                                var key = event.keyCode;
+                                // Only allow numbers to be entered with float value  with slash
+                                if (key < 46 || key > 57) {
+                                    event.preventDefault();
+                                }
+
+                            }
+
+
+                            function Home() {
+                                document.getElementById("side-nav").style.width = "0";
+                                document.getElementById("side-nav").style.display = "none";
+                            }
+
+
+
+                            function About() {
+                                document.getElementById("side-nav").style.width = "0";
+                                document.getElementById("side-nav").style.display = "none";
+                            }
+
+
+
+
+                            function Contact() {
+                                document.getElementById("side-nav").style.width = "0";
+                                document.getElementById("side-nav").style.display = "none";
+                            }
+
+
+
+                            function FormLogin() {
+                                document.getElementById("side-nav").style.width = "0";
+                                document.getElementById("side-nav").style.display = "none";
+                                $('#modaluserlogin').modal('show');
+
+                            }
+
+                            function userlogin() {
+                                alert("hh");
+                                var email = $("#user_email").val();
+                                var Password = $("#user_pwd").val();
+
+                                if ((email == null) || (email == '0') || (email == "undefined") || (email == '')) {
+                                    alert("Fill Email");
+                                    $('#pt_email1').focus();
+                                    return;
+                                }
+
+                                if ((Password == null) || (Password == '0') || (Password == "undefined") || (Password == '')) {
+                                    alert("Fill Password");
+                                    $('#pt_Password1').focus();
+                                    return;
+                                }
+
+                                var urlgetcode = '../Home/userlogin';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '{email:"' + email + '",Password:"' + Password + '"}',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        if (msg < 0) {
+                                            alert('User Failed....');
+
+
+                                        }
+                                        else {
+                                            var obj = JSON.stringify(msg);
+                                            var str = $.parseJSON(obj);
+                                            if (str.length > 0) {
+
+
+                                                for (var i = 0; i < str.length; i++) {
+
+                                                    localStorage.setItem("Rpt_No", str[i]["Rpt_No"]);
+                                                    localStorage.setItem("Username", str[i]["Username"]);
+                                                    localStorage.setItem("Email", str[i]["Email"]);
+                                                    localStorage.setItem("Mobileno", str[i]["Mobileno"]);
+
+                                                    $('#pt_rhid').val(str[i]["Rpt_No"]);
+
+                                                    $('#profilename').text(str[i]["Username"]);
+                                                    $('#pt_Username').val(str[i]["Username"]);
+                                                    $('#pt_Email').val(str[i]["Email"]);
+                                                    $('#pt_mobileno').val(str[i]["Mobileno"]);
+
+
+
+
+                                                }
+                                                alert('User Login....');
+                                                //Hide User Login Model
+                                                $('#modaluserlogin').modal('hide');
+                                                $(".rounded-circle").css("display", "block");
+                                                $("#img-box1").css("display", "block");
+                                                $("#lblprofileid").css("display", "block");
+                                                //Show Appointment Model
+                                                //$('#modalappointment').modal('show');
+                                            }
+                                            else {
+                                                alert('User Failed....');
+                                            }
+
+                                        }
+
+
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+                            }
+
+                            function cleardetail() {
+                                $('#pt_rhid').val("");
+                                $('#pt_Username').val("");
+                                $('#pt_Email').val("");
+                                $('#pt_mobileno').val("");
+
+                                $('#user_email').val("");
+                                $('#user_pwd').val("");
+
+
+                            }
+
+
+                            function Logout() {
+                                cleardetail();
+                            }
+
+                            //$(".dropdown-toggle").on("click", function () {
+                            //    debugger;
+
+
+                            //    $(".dropdown-menu").toggle();
+                            //});
+
+                            //// hide the menu when an exmple is clicked
+                            //$(".example").on("click", function () {
+                            //    $(".dropdown-menu").hide();
+                            //});
+
+                            var profile = document.querySelector('.profile');
+                            var menu = document.querySelector('.menu');
+
+                            profile.onclick = function () {
+                                menu.classList.toggle('active');
+                            }
+
+                            function getcountry() {
+                                /*        debugger;*/
+                                $('#country').empty();
+
+                                var urlgetcode = '../Admin/getcountry';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            $('#country').append('<option value="0">Select </option>');
+                                            for (var i = 0; i < str.length; i++) {
+
+                                                $('#country').append('<option value="' + str[i]["countryid"] + '">' + str[i]["country"] + '</option>');
+
+
+                                            }
+
+
+                                        }
+
+
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+                            }
+                            //getstate
+                            function getstate() {
+                                /*  debugger;*/
+                                var countrycd = $('#country option:selected').val();
+                                $('#state').empty();
+
+                                var urlgetcode = '../Admin/getstate';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '{countrycd:"' + countrycd + '"}',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            $('#state').append('<option value="0">Select </option>');
+                                            for (var i = 0; i < str.length; i++) {
+
+                                                $('#state').append('<option value="' + str[i]["stateid"] + '">' + str[i]["statename"] + '</option>');
+
+
+                                            }
+
+
+                                        }
+
+
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+                            }
+                            //get city
+
+                            function getcity() {
+                                /*       debugger;*/
+                                var statecd = $('#state option:selected').val();
+                                /*        console.log(statecd);*/
+                                $('#city').empty();
+
+                                var urlgetcode = '../Admin/getcity';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '{statecd:"' + statecd + '"}',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            $('#city').append('<option value="0">Select </option>');
+                                            for (var i = 0; i < str.length; i++) {
+
+                                                $('#city').append('<option value="' + str[i]["cityid"] + '">' + str[i]["cityname"] + '</option>');
+
+
+                                            }
+
+
+                                        }
+
+
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+                            }
+
+                            function getPsychiatric_doc() {
+                                $('#Psychiatric_Doctor').empty();
+                                debugger;
+                                var urlgetcode = '../Admin/getPsychiatric_doc';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            $('#Psychiatric_Doctor').append('<option value="0">Select </option>');
+                                            for (var i = 0; i < str.length; i++) {
+
+                                                $('#Psychiatric_Doctor').append('<option value="' + str[i]["Doc_No"] + '">' + str[i]["Doctor_Name"] + '</option>');
+
+
+                                            }
+
+
+                                        }
+
+
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+
+                            }
+
+                            function get_dates_asper_days() {
+
+
+                                var urlgetcode = '../Admin/getdays';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '{pl:"' + $('#Pschologist_doc').val() + '",pc:"' + $('#Psychiatric_Doctor').val() + '"}',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            $('#Psychiatric_Doctor').append('<option value="0">Select </option>');
+                                            for (var i = 0; i < str.length; i++) {
+
+                                                $('#Psychiatric_Doctor').append('<option value="' + str[i]["Doc_No"] + '">' + str[i]["Doctor_Name"] + '</option>');
+
+
+                                            }
+
+
+                                        }
+
+
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+
+
+                                var days = new Array();
+                                $('input:checkbox[name="custom7"]:checked').each(function () {
+                                    days.push($(this).val());
+                                });
+                                debugger;
+                                var m = days.toString().split(',');
+                                console.log(m);
+                                var m0 = m[0];
+                                var m1 = m[1];
+                                console.log(m);
+
+                                $('#txtDate').datepicker({                // dateFormat: 'dd-mm-yy',
+                                    beforeShowDay:
+                                        function (dt) {
+                                            debugger;
+                                            return [dt.getDay() == m[0] ? true : false || dt.getDay() == m[1] ? true : false || dt.getDay() == m[2] ? true : false || dt.getDay() == m[3] ? true : false || dt.getDay() == m[4] ? true : false || dt.getDay() == m[5] ? true : false || dt.getDay() == m[6] ? true : false];
+                                        }
+                                });
+                            }
+
+                            function getPschologist_doc() {
+                                $('#Pschologist_doc').empty();
+                                debugger;
+                                var urlgetcode = '../Admin/getPschologist_doc';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            $('#Pschologist_doc').append('<option value="0">Select </option>');
+                                            for (var i = 0; i < str.length; i++) {
+
+                                                $('#Pschologist_doc').append('<option value="' + str[i]["Doc_No"] + '">' + str[i]["Doctor_Name"] + '</option>');
+
+
+                                            }
+
+
+                                        }
+
+
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+                            }
+
+                            function getService() {
+                                $('#pt_serv').empty();
+                                debugger;
+                                var urlgetcode = '../Admin/getService';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            $('#pt_serv').append('<option value="0">Select </option>');
+                                            for (var i = 0; i < str.length; i++) {
+
+                                                $('#pt_serv').append('<option value="' + str[i]["service_code"] + '">' + str[i]["service_description"] + '</option>');
+                                            }
+                                        }
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+                            }
+                            var dayarr = [];
+                            var dayarr2 = [];
+                            function getdoctor_available_days() {
+
+                                var Pschologist_doc = $("#Pschologist_doc").val();
+
+                                var urlgetcode = '../Admin/getdoctor_available_days';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '{Pschologist_doc:"' + Pschologist_doc + '"}',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        debugger;
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            // alert("h");
+
+
+                                            if (str[0]["Sunday"] == 1) {
+                                                dayarr.push('0');
+                                            }
+                                            if (str[0]["Monday"] == 1) {
+                                                dayarr.push('1');
+                                            }
+                                            if (str[0]["Tuesday"] == 1) {
+                                                dayarr.push('2');
+                                            }
+                                            if (str[0]["Wednessday"] == 1) {
+                                                dayarr.push('3');
+                                            }
+                                            if (str[0]["Thursday"] == 1) {
+                                                dayarr.push('4');
+                                            }
+                                            if (str[0]["Friday"] == 1) {
+                                                dayarr.push('5');
+                                            }
+                                            if (str[0]["Saturday"] == 1) {
+                                                dayarr.push('6');
+                                            }
+                                            //alert(dayarr);
+
+                                            //debugger;
+                                            //var m = dayarr.toString().split(',');
+                                            //console.log(m);
+                                            //console.log(m[0]);
+                                            //console.log(m[1]);
+                                            //$.noConflict();
+                                            //$('#txtDate').datepicker({                // dateFormat: 'dd-mm-yy',
+                                            //    beforeShowDay:
+                                            //        function (dt) {
+                                            //            debugger;
+                                            //            return [dt.getDay() == m[0] ? true : false || dt.getDay() == m[1] ? true : false || dt.getDay() == m[2] ? true : false || dt.getDay() == m[3] ? true : false || dt.getDay() == m[4] ? true : false || dt.getDay() == m[5] ? true : false || dt.getDay() == m[6] ? true : false];
+                                            //        }
+                                            //});
+                                        }
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+                            }
+
+                            var daysa = [];
+                            function getdoctor_available_days2() {
+                                var Psychiatric_Doctor = $("#Psychiatric_Doctor").val();
+                                $.noConflict();
+                                var urlgetcode = '../Admin/getdoctor_available_days';
+                                $.ajax({
+                                    type: "POST",
+                                    url: urlgetcode,
+                                    data: '{Pschologist_doc:"' + Psychiatric_Doctor + '"}',
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    async: false,
+                                    cache: false,
+                                    success: function (msg) {
+                                        debugger;
+                                        var obj = JSON.stringify(msg);
+                                        var str = $.parseJSON(obj);
+                                        if (str.length > 0) {
+
+                                            // alert("h");
+
+
+                                            if (str[0]["Sunday"] == 1) {
+                                                dayarr2.push('0');
+                                            }
+                                            if (str[0]["Monday"] == 1) {
+                                                dayarr2.push('1');
+                                            }
+                                            if (str[0]["Tuesday"] == 1) {
+                                                dayarr2.push('2');
+                                            }
+                                            if (str[0]["Wednessday"] == 1) {
+                                                dayarr2.push('3');
+                                            }
+                                            if (str[0]["Thursday"] == 1) {
+                                                dayarr2.push('4');
+                                            }
+                                            if (str[0]["Friday"] == 1) {
+                                                dayarr2.push('5');
+                                            }
+                                            if (str[0]["Saturday"] == 1) {
+                                                dayarr2.push('6');
+                                            }
+                                            // alert(dayarr);
+                                            console.log(dayarr);
+                                            console.log(dayarr2);
+                                            daysa = intersection(dayarr, dayarr2);
+                                            //dayarr = dayarr.filter(function (item, index, inputArray) {
+                                            //    return inputArray.indexOf(item) == index;
+                                            //});
+                                            // alert(dayarr);
+
+
+                                            debugger;
+                                            var m = daysa.toString().split(',');
+                                            console.log(daysa);
+                                            console.log(m);
+                                            $.noConflict();
+                                            $('#txtDate').datepicker({                // dateFormat: 'dd-mm-yy',
+                                                beforeShowDay:
+                                                    function (dt) {
+                                                        debugger;
+                                                        return [dt.getDay() == m[0] ? true : false || dt.getDay() == m[1] ? true : false || dt.getDay() == m[2] ? true : false || dt.getDay() == m[3] ? true : false || dt.getDay() == m[4] ? true : false || dt.getDay() == m[5] ? true : false || dt.getDay() == m[6] ? true : false];
+                                                    }
+                                            });
+                                        }
+                                    },
+                                    error: function (request) {
+                                        alert(request.responseText);
+                                    }
+                                });
+
+
+                            }
+                            function intersection(a, b) {
+                                const setA = new Set(a);
+                                return b.filter(value => setA.has(value));
+                            }
+                            function select_sub_service() {
+                                debugger
+                                var id = $('#pt_serv').val();
+                                if ($('#pt_serv').val() == "15") {
+                                    $('.hidedoctors').hide();
+                                    $('.hidedoctorsUDT').show();
+                                    $('.hsftime').show();
+
+                                    var urlgetcode = '../Admin/select_sub_service';
+                                    $.ajax({
+                                        type: "POST",
+                                        url: urlgetcode,
+                                        data: '{serv_code :"' + $('#pt_serv').val() + '"}',
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        async: false,
+                                        cache: false,
+                                        success: function (msg) {
+                                            var obj = JSON.stringify(msg);
+                                            var str = $.parseJSON(obj);
+                                            if (str.length > 0) {
+
+                                                $('#pt_sub_serv').append('<option value="0">Select </option>');
+                                                for (var i = 0; i < str.length; i++) {
+
+                                                    $('#pt_sub_serv').append('<option value="' + str[i]["sub_service_code"] + '">' + str[i]["sub_service_description"] + '</option>');
+                                                }
+                                            }
+                                        },
+                                        error: function (request) {
+                                            alert(request.responseText);
+                                        }
+                                    });
+                                } else {
+                                    $('.hidedoctors').show();
+                                    $('.hidedoctorsUDT').hide();
+                                    $('.hsftime').show();
+                                    $('#pt_sub_serv').empty();
+                                    debugger;
+                                    var urlgetcode = '../Admin/select_sub_service';
+                                    $.ajax({
+                                        type: "POST",
+                                        url: urlgetcode,
+                                        data: '{serv_code :"' + $('#pt_serv').val() + '"}',
+                                        contentType: "application/json; charset=utf-8",
+                                        dataType: "json",
+                                        async: false,
+                                        cache: false,
+                                        success: function (msg) {
+                                            var obj = JSON.stringify(msg);
+                                            var str = $.parseJSON(obj);
+                                            if (str.length > 0) {
+
+                                                $('#pt_sub_serv').append('<option value="0">Select </option>');
+                                                for (var i = 0; i < str.length; i++) {
+
+                                                    $('#pt_sub_serv').append('<option value="' + str[i]["sub_service_code"] + '">' + str[i]["sub_service_description"] + '</option>');
+                                                }
+                                            }
+                                        },
+                                        error: function (request) {
+                                            alert(request.responseText);
+                                        }
+                                    });
+                                }
+
+
+                            }
+
+                            var urll = "";
+                            var meetid = "";
+                            var counsilorconnect = 0;
+                            function free_call_connect() {
+                                urll = "https://meet.google.com/";
+                                meetid = "rgr-ruvx-jsa";
+                                counsilorconnect = 1;
+                                localStorage.setItem("counsilorconnect", counsilorconnect);
+                                localStorage.setItem("meetid", meetid);
+
+                                var pt_rno = $('#pt_rhid').val();
+
+                                var Country = $('#country').val();
+                                var State = $('#state').val();
+                                var City = $('#city').val();
+                                var pin_code = $('#pt_Pincode').val();
+                                var pt_uploadhis = $('#pt_uploadhis').val();
+                                var pt_Symptoms = $('#pt_Symptoms').val();
+                                var pt_anyrelinfo = $('#pt_anyrelinfo').val();
+                                var pt_serv = $('#pt_serv').val();
+                                var pt_sub_serv = $('#pt_sub_serv').val();
+                                var Pschologist_doc = 0;
+                                var Psychiatric_Doctor = 0;
+                                var txtDate = $('#txtDate2').val();
+                                var Fro_time = $('#Fro_time').val();
+                                var to_time = $('#to_time').val();
+                                var chk = 0;
+                                var address = $('#pt_address').val();
+                                if ((pt_rno == null) || (pt_rno == '0') || (pt_rno == "undefined") || (pt_rno == '')) {
+                                    alert("Fill Rooh Id  ");
+                                    $('#pt_rhid').focus();
+                                    return;
+                                }
+                                if ((Country == null) || (Country == '0') || (Country == "undefined") || (Country == '')) {
+                                    alert(" Choose Country please.");
+                                    $('#country').focus();
+                                    return;
+                                }
+                                if ((State == null) || (State == '0') || (State == "undefined") || (State == '')) {
+                                    alert("Choose state please!");
+                                    $('#State').focus();
+                                    return;
+                                }
+                                if ((City == null) || (City == '0') || (City == "undefined") || (City == '')) {
+                                    alert("Choose city please");
+                                    $('#city').focus();
+                                    return;
+                                }
+                                if ((address == null) || (address == '0') || (address == "undefined") || (address == '')) {
+                                    alert("Type Your Address Please");
+                                    $('#pt_address').focus();
+                                    return;
+                                }
+                                if ((pin_code == null) || (pin_code == '0') || (pin_code == "undefined") || (pin_code == '')) {
+                                    alert("Fill Pin code.");
+                                    $('#pt_Pincode').focus();
+                                    return;
+                                }
+                                if ((pt_uploadhis == null) || (pt_uploadhis == '0') || (pt_uploadhis == "undefined") || (pt_uploadhis == '')) {
+                                    alert("upload path History.");
+                                    $('#pt_uploadhis').focus();
+                                    return;
+                                }
+                                if ((pt_Symptoms == null) || (pt_Symptoms == '0') || (pt_Symptoms == "undefined") || (pt_Symptoms == '')) {
+                                    alert("Fill symptoms please.");
+                                    $('#pt_Symptoms').focus();
+                                    return;
+                                }
+
+                                if ((pt_serv == null) || (pt_serv == '0') || (pt_serv == "undefined") || (pt_serv == '')) {
+                                    alert(" Choose  sevice please.");
+                                    $('#pt_serv option:selected').focus();
+                                    return;
+                                }
+                                if ((pt_sub_serv == null) || (pt_sub_serv == '0') || (pt_sub_serv == "undefined") || (pt_sub_serv == '')) {
+                                    alert(" Choose  sub service.");
+                                    $('#pt_sub_serv option:selected').focus();
+                                    return;
+                                }
+
+                                if ((txtDate == null) || (txtDate == '0') || (txtDate == "undefined") || (txtDate == '')) {
+                                    alert("");
+                                    $('#txtDate').focus();
+                                    return;
+                                }
+                                if ((Fro_time == null) || (Fro_time == '0') || (Fro_time == "undefined") || (Fro_time == '')) {
+                                    alert("select time .");
+                                    $('#textArea_Address2').focus();
+                                    return;
+                                }
+                                if ((to_time == null) || (to_time == '0') || (to_time == "undefined") || (to_time == '')) {
+                                    alert("Choose time ");
+                                    $('#to_time').focus();
+                                    return;
+                                }
+                                counsilorconnect = localStorage.getItem("counsilorconnect");
+                                meet = localStorage.getItem("meetid");
+                                if ((to_time == null) || (to_time == '0') || (to_time == "undefined") || (to_time == '')) {
+                                    alert("Choose time ");
+                                    $('#to_time').focus();
+                                    return;
+                                }
+
+                                console.log(pt_uploadhis);
+                                if (counsilorconnect == null || counsilorconnect == 0 || counsilorconnect == '') {
+                                    counsilorconnect = 0;
+                                } else {
+                                    counsilorconnect = 1;
+                                }
+                                if (document.getElementById("appchk").checked == true) {
+                                    debugger
+                                    chk = 1;
+                                    var urlgetcode = '../Admin/save_Appointment';
+                                    $.ajax({
+                                        type: "POST",
+                                        url: urlgetcode,
+                                        /*data: '{Rpt_No:'+pt_rno+',Country:"'+Country+'",State:"'+State+'",City:"'+City+'",pin_cod:"'+pin_code+'",pt_uploadhis:"'+pt_uploadhis+'",pt_Symptoms:"'+pt_Symptoms+'",pt_anyrelinfo:"' + pt_anyrelinfo + '",serv_code:"' + pt_serv + '",sub_serv_code:"' + pt_sub_serv + '",Pschologist_doc:"' + Pschologist_doc + '",Psychiatric_Doctor:"' + Psychiatric_Doctor + '",appoint_date:"' + txtDate + '",ftime:"' + Fro_time + '",ttime:"' + to_time + '",councilorstatus:"' + counsilorconnect + '",councilorMeetid:"' + urll + meetid + '",termscondition:"' + chk + '",crt_id:"' + $('#pt_rhid').val() + '",crtusr:"' + $('#pt_Username').val() + '",act_status:"' + chk + '"}',*/
+                                        data: '{Rpt_No:' + pt_rno + ',Country:' + Country + ',State:' + State + ',City:' + City + ',pin_cod:"' + pin_code + '",pt_uploadhis:"' + $('#pathname').val() + '",pt_Symptoms:"' + pt_Symptoms + '",pt_anyrelinfo:"' + pt_anyrelinfo + '",serv_code:' + pt_serv + ',sub_serv_code:' + pt_sub_serv + ',Pschologist_doc:' + Pschologist_doc + ',Psychiatric_Doctor:' + Psychiatric_Doctor + ',appoint_date:"' + txtDate + '",ftime:"' + Fro_time + '",ttime:"' + to_time + '",councilorstatus:' + counsilorconnect + ',councilorMeetid:"' + meet + '",termscondition:' + chk + ',crt_id:' + $('#pt_rhid').val() + ',crtusr:"' + $('#pt_Username').val() + '",act_status:' + chk + ',address:"' + address + '"}',
+                                        contentType: "application/json;",
+                                        dataType: "json",
+                                        async: false,
+                                        cache: false,
+                                        success: function (msg) {
+                                            if (msg < 0) {
+                                                alert('Appointment already Exist');
+                                            }
+                                            else {
+                                                alert('Appointment saved Successfully');
+                                                window.location = urll + meetid;
+                                                $('#pathname').val('');
+                                            }
+                                        },
+                                        error: function (request) {
+                                            alert(request.responseText);
+                                        }
+                                    });
+                                }
+                                else {
+                                    chk = 0;
+                                }
+
+
+
+                            }
+                            function save_Appoinment() {
+
+                                var pt_rno = $('#pt_rhid').val();
+
+                                var Country = $('#country').val();
+                                var State = $('#state').val();
+                                var City = $('#city').val();
+                                var pin_code = $('#pt_Pincode').val();
+                                var pt_uploadhis = $('#pt_uploadhis').val();
+                                var pt_Symptoms = $('#pt_Symptoms').val();
+                                var pt_anyrelinfo = $('#pt_anyrelinfo').val();
+                                var pt_serv = $('#pt_serv').val();
+                                var pt_sub_serv = $('#pt_sub_serv').val();
+                                var Pschologist_doc = $('#Pschologist_doc').val();
+                                var Psychiatric_Doctor = $('#Psychiatric_Doctor').val();
+                                var txtDate = $('#txtDate').val();
+                                var Fro_time = $('#Fro_time').val();
+                                var to_time = $('#to_time').val();
+                                var chk = 0;
+                                var address = $('#pt_address').val();
+                                if ((pt_rno == null) || (pt_rno == '0') || (pt_rno == "undefined") || (pt_rno == '')) {
+                                    alert("Fill Rooh Id  ");
+                                    $('#pt_rhid').focus();
+                                    return;
+                                }
+                                if ((Country == null) || (Country == '0') || (Country == "undefined") || (Country == '')) {
+                                    alert(" Choose Country please.");
+                                    $('#country').focus();
+                                    return;
+                                }
+                                if ((State == null) || (State == '0') || (State == "undefined") || (State == '')) {
+                                    alert("Choose state please!");
+                                    $('#State').focus();
+                                    return;
+                                }
+                                if ((City == null) || (City == '0') || (City == "undefined") || (City == '')) {
+                                    alert("Choose city please");
+                                    $('#city').focus();
+                                    return;
+                                }
+                                if ((pin_code == null) || (pin_code == '0') || (pin_code == "undefined") || (pin_code == '')) {
+                                    alert("Fill Pin code.");
+                                    $('#pt_Pincode').focus();
+                                    return;
+                                }
+                                if ((address == null) || (address == '0') || (address == "undefined") || (address == '')) {
+                                    alert("Type Your Address Please");
+                                    $('#pt_address').focus();
+                                    return;
+                                }
+                                if ((pt_uploadhis == null) || (pt_uploadhis == '0') || (pt_uploadhis == "undefined") || (pt_uploadhis == '')) {
+                                    alert("upload path History.");
+                                    $('#pt_uploadhis').focus();
+                                    return;
+                                }
+                                if ((pt_Symptoms == null) || (pt_Symptoms == '0') || (pt_Symptoms == "undefined") || (pt_Symptoms == '')) {
+                                    alert("Fill symptoms please.");
+                                    $('#pt_Symptoms').focus();
+                                    return;
+                                }
+
+                                if ((pt_serv == null) || (pt_serv == '0') || (pt_serv == "undefined") || (pt_serv == '')) {
+                                    alert(" Choose  sevice please.");
+                                    $('#pt_serv option:selected').focus();
+                                    return;
+                                }
+                                if ((pt_sub_serv == null) || (pt_sub_serv == '0') || (pt_sub_serv == "undefined") || (pt_sub_serv == '')) {
+                                    alert(" Choose  sub service.");
+                                    $('#pt_sub_serv option:selected').focus();
+                                    return;
+                                }
+                                if ((Pschologist_doc == null) || (Pschologist_doc == '0') || (Pschologist_doc == "undefined") || (Pschologist_doc == '')) {
+                                    alert("Choose  Pschologist doctor. ");
+                                    $('#Pschologist_doc option:selected').focus();
+                                    return;
+                                }
+                                if ((Psychiatric_Doctor == null) || (Psychiatric_Doctor == '0') || (Psychiatric_Doctor == "undefined") || (Psychiatric_Doctor == '')) {
+                                    alert("Choose Psychiatrist doctor.");
+                                    $('#Psychiatric_Doctor option:selected').focus();
+                                    return;
+                                }
+                                if ((txtDate == null) || (txtDate == '0') || (txtDate == "undefined") || (txtDate == '')) {
+                                    alert("");
+                                    $('#txtDate').focus();
+                                    return;
+                                }
+                                if ((Fro_time == null) || (Fro_time == '0') || (Fro_time == "undefined") || (Fro_time == '')) {
+                                    alert("select time .");
+                                    $('#textArea_Address2').focus();
+                                    return;
+                                }
+                                if ((to_time == null) || (to_time == '0') || (to_time == "undefined") || (to_time == '')) {
+                                    alert("Choose time ");
+                                    $('#to_time').focus();
+                                    return;
+                                }
+
+                                if ((to_time == null) || (to_time == '0') || (to_time == "undefined") || (to_time == '')) {
+                                    alert("Choose time ");
+                                    $('#to_time').focus();
+                                    return;
+                                }
+                                counsilorconnect = localStorage.getItem("counsilorconnect");
+                                if ((to_time == null) || (to_time == '0') || (to_time == "undefined") || (to_time == '')) {
+                                    alert("Choose time ");
+                                    $('#to_time').focus();
+                                    return;
+                                }
+
+                                console.log(pt_uploadhis);
+                                if (counsilorconnect == null || counsilorconnect == 0 || counsilorconnect == '') {
+                                    counsilorconnect = 0;
+                                } else {
+                                    counsilorconnect = 1;
+                                }
+                                if (document.getElementById("appchk").checked == true) {
+                                    debugger
+                                    chk = 1;
+                                    var urlgetcode = '../Admin/save_Appointment';
+                                    $.ajax({
+                                        type: "POST",
+                                        url: urlgetcode,
+                                        /*data: '{Rpt_No:'+pt_rno+',Country:"'+Country+'",State:"'+State+'",City:"'+City+'",pin_cod:"'+pin_code+'",pt_uploadhis:"'+pt_uploadhis+'",pt_Symptoms:"'+pt_Symptoms+'",pt_anyrelinfo:"' + pt_anyrelinfo + '",serv_code:"' + pt_serv + '",sub_serv_code:"' + pt_sub_serv + '",Pschologist_doc:"' + Pschologist_doc + '",Psychiatric_Doctor:"' + Psychiatric_Doctor + '",appoint_date:"' + txtDate + '",ftime:"' + Fro_time + '",ttime:"' + to_time + '",councilorstatus:"' + counsilorconnect + '",councilorMeetid:"' + urll + meetid + '",termscondition:"' + chk + '",crt_id:"' + $('#pt_rhid').val() + '",crtusr:"' + $('#pt_Username').val() + '",act_status:"' + chk + '"}',*/
+                                        data: '{Rpt_No:' + pt_rno + ',Country:' + Country + ',State:' + State + ',City:' + City + ',pin_cod:"' + pin_code + '",pt_uploadhis:"' + $('#pathname').val() + '",pt_Symptoms:"' + pt_Symptoms + '",pt_anyrelinfo:"' + pt_anyrelinfo + '",serv_code:' + pt_serv + ',sub_serv_code:' + pt_sub_serv + ',Pschologist_doc:' + Pschologist_doc + ',Psychiatric_Doctor:' + Psychiatric_Doctor + ',appoint_date:"' + txtDate + '",ftime:"' + Fro_time + '",ttime:"' + to_time + '",councilorstatus:' + counsilorconnect + ',councilorMeetid:"' + urll + meetid + '",termscondition:' + chk + ',crt_id:' + $('#pt_rhid').val() + ',crtusr:"' + $('#pt_Username').val() + '",act_status:' + chk + ',address:"' + address + '"}',
+                                        contentType: "application/json;",
+                                        dataType: "json",
+                                        async: false,
+                                        cache: false,
+                                        success: function (msg) {
+                                            if (msg < 0) {
+                                                alert('Appointment already Exist');
+                                            }
+                                            else {
+                                                alert('Appointment saved Successfully');
+                                                $('#pathname').val('');
+                                            }
+                                        },
+                                        error: function (request) {
+                                            alert(request.responseText);
+                                        }
+                                    });
+                                }
+                                else {
+                                    chk = 0;
+                                }
+
+                            }
+                            function SaveMaterial() {
+                                debugger
+                                var pt_rhid = $('#pt_rhid').val();
+
+                                if (window.FormData !== undefined) {
+                                    var uploadfile = $("#pt_uploadhis").get(0);
+                                    var files = uploadfile.files;
+                                    console.log(files);
+                                    var lecnat = document.getElementById("pt_uploadhis").files[0];
+                                    var fileData = new FormData();
+                                    for (var i = 0; i < files.length; i++) {
+                                        fileData.append(files[i].name, files[i]);
+                                        $('#pathname').val(files[i].name);
+                                    }
+
+                                    fileData.append('pt_rhid', pt_rhid);
+
+                                    $.ajax({
+                                        url: '../Admin/UploadLectureMaterial',
+                                        type: "POST",
+                                        contentType: false,
+                                        processData: false,
+                                        data: fileData,
+                                        success: function (Result) {
+                                            debugger
+                                            if (Result == 'Pass') {
+
+                                                alert('Your History has been Successfully Uploaded!');
+                                            }
+                                            else {
+                                                alert(Result);
+                                            }
+                                        },
+                                        error: function (err) {
+                                            alert(err.statusText);
+                                        }
+                                    });
+                                } else {
+                                    alert("FormData is not supported.");
+                                }
+                                /*  NMC_GetMaterialTable();*/
+                            }
+
+                            function signout() {
+                                localStorage.clear();
+                                window.location.reload();
+                            }
+
+                            function userdash() {
+                                var Rpt_No = localStorage.getItem("Rpt_No");
+                                var Username = localStorage.getItem("Username");
+                                var Email = localStorage.getItem("Email");
+                                var Mobileno = localStorage.getItem("Mobileno");
+                                if (Rpt_No == null || Rpt_No == '' || Rpt_No == undefined) {
+
+
+
+                                }
+
+                                else {
+                                    window.location = "../Home/UserDashboard";
+
+                                    return;
+
+                                }
+
+                            }
+                        </script>
